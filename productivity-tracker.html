@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Productivity Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js"></script>
+</head>
+<body>
+    <div class="dashboard">
+                    <header class="header">
+                <div class="sound-toggle" id="soundToggle">
+                    🔊 Sound ON
+                </div>
+
+                <div class="current-time" id="currentTime">
+                    00:00:00
+                </div>
+                <h1>Personal Productivity Tracker</h1>
+                <p>Your all-in-one dashboard for daily productivity management</p>
+            </header>
+
+        <div class="widgets-grid">
+            <!-- To-Do List Widget -->
+            <div class="widget">
+                <div class="widget-header">
+                    <div class="widget-icon">📝</div>
+                    <h3 class="widget-title">To-Do List</h3>
+                </div>
+                <div class="todo-input">
+                    <input type="text" id="todoInput" placeholder="✨ Add your task here...">
+                    <button>Add Task</button>
+                </div>
+                <div id="todoList"></div>
+            </div>
+
+            <!-- Multiple Notes Widget -->
+            <div class="widget">
+                <div class="widget-header">
+                    <div class="widget-icon">📋</div>
+                    <h3 class="widget-title">Notes</h3>
+                </div>
+                <div class="note-input">
+                    <input type="text" id="noteTitle" placeholder="📝 Note title...">
+                    <button>New Note</button>
+                </div>
+                <div id="notesList"></div>
+                <div id="noteEditor" class="note-editor" style="display: none;">
+                    <div class="note-editor-header">
+                        <input type="text" id="currentNoteTitle" class="note-title-edit">
+                        <div class="note-editor-controls">
+                            <button onclick="app.noteManager.save()">Save</button>
+                            <button onclick="app.noteManager.close()">Close</button>
+                            <button class="btn-danger delete-note-btn" onclick="app.noteManager.delete()">Delete</button>
+                        </div>
+                    </div>
+                    <div class="formatting-toolbar">
+                        <button class="format-btn" onclick="formatText('bold')" title="Bold"><b>B</b></button>
+                        <button class="format-btn" onclick="formatText('italic')" title="Italic"><i>I</i></button>
+                        <button class="format-btn" onclick="formatText('underline')" title="Underline"><u>U</u></button>
+                        <button class="format-btn" onclick="highlightText()" title="Highlight">H</button>
+                        <select class="font-size-selector" onchange="changeFontSize(this.value)">
+                            <option value="12">12px</option>
+                            <option value="14" selected>14px</option>
+                            <option value="16">16px</option>
+                            <option value="18">18px</option>
+                            <option value="20">20px</option>
+                        </select>
+                    </div>
+                    <div id="currentNoteContent" class="note-content-edit" contenteditable="true" 
+                         placeholder="💭 Start writing your thoughts, ideas, or important information here..."></div>
+                    <div class="note-footer">
+                        Auto-saved to local storage
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pomodoro Timer Widget -->
+            <div class="widget">
+                <div class="widget-header">
+                    <div class="widget-icon">🍅</div>
+                    <h3 class="widget-title">Pomodoro Timer</h3>
+                </div>
+                <div class="timer-display">
+                    <div id="timerTime" class="timer-time">25:00</div>
+                    <div id="timerMode" class="timer-mode">Work Session</div>
+                </div>
+                <div class="timer-controls">
+                    <button id="startBtn" class="timer-btn">Start</button>
+                    <button id="pauseBtn" class="timer-btn">Pause</button>
+                    <button id="resetBtn" class="timer-btn">Reset</button>
+                </div>
+            </div>
+
+            <!-- Habit Tracker Widget -->
+            <div class="widget">
+                <div class="widget-header">
+                    <div class="widget-icon">🎯</div>
+                    <h3 class="widget-title">Habit Tracker</h3>
+                </div>
+                <div class="habit-input">
+                    <input type="text" id="habitInput" placeholder="🎯 Add a habit to track...">
+                    <button>Add Habit</button>
+                </div>
+                <div id="habitList"></div>
+            </div>
+
+            <!-- Reminder Widget -->
+            <div class="widget">
+                <div class="widget-header">
+                    <div class="widget-icon">⏰</div>
+                    <h3 class="widget-title">Reminders</h3>
+                </div>
+                <div class="reminder-form">
+                    <input type="text" id="reminderText" placeholder="⏰ What should I remind you about?">
+                    <input type="datetime-local" id="reminderTime">
+                    <button onclick="app.reminderManager.add()">Set Reminder</button>
+                </div>
+                <div id="reminderList"></div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <div class="made-by">
+            <span class="made-text">Crafted with</span>
+            <span class="heart">💜</span>
+            <span class="made-text">by</span>
+            <span class="author-name">Ashish</span>
+        </div>
+    </footer>
+</body>
+</html> 
